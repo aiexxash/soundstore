@@ -13,7 +13,7 @@ class SignUpViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationController?.navigationBar.tintColor = .link
+        self.navigationController?.navigationBar.tintColor = .white
     }
     
     @IBAction func signButtonClicked(_ sender: UIButton) {

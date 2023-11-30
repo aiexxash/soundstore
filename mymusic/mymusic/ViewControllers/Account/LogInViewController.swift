@@ -1,9 +1,12 @@
 import UIKit
+import FirebaseCore
 import FirebaseAuth
+import GoogleSignIn
 import Firebase
 import Network
 
 class LogInViewController: UIViewController {
+    @IBOutlet weak var googleButton: UIButton!
     @IBOutlet weak var signButton: UIButton!
     @IBOutlet weak var logButton: UIButton!
     @IBOutlet weak var errorLabel: UILabel!
@@ -27,6 +30,30 @@ class LogInViewController: UIViewController {
         checkInternetConnection()
     }
     
+    @IBAction func googleButtonDidTapped(_ sender: UIButton) {
+        guard let clientID = FirebaseApp.app()?.options.clientID else { return }
+        
+        let config = GIDConfiguration(clientID: clientID)
+        GIDSignIn.sharedInstance.configuration = config
+        
+        GIDSignIn.sharedInstance.signIn(withPresenting: self) { [unowned self] result, error in
+            guard error == nil else {
+                return
+            }
+
+            guard let user = result?.user, let idToken = user.idToken?.tokenString else {
+                return
+            }
+            let credential = GoogleAuthProvider.credential(withIDToken: idToken,
+                                                         accessToken: user.accessToken.tokenString)
+            Auth.auth().signIn(with: credential) { result, error in
+                let destVC = UIStoryboard(name: "Main", bundle:nil).instantiateViewController(withIdentifier: "MusicViewController") as! MusicViewController
+                self.defaults.set(self.emailTextField.text!, forKey: "email")
+                self.navigationController?.setViewControllers([destVC], animated: true)
+            }
+        }
+    }
+    
     @IBAction func logButtonClicked(_ sender: UIButton) {
         let error = Helping.checkTextFields(errorLabel: errorLabel, textFields: [emailTextField, passwordTextField])
          
@@ -42,7 +69,7 @@ class LogInViewController: UIViewController {
             Helping.showError(text: error!.localizedDescription, label: self.errorLabel, textFields: [self.emailTextField, self.passwordTextField])
         }
         else {
-            let destVC = UIStoryboard(name: "Main", bundle:nil).instantiateViewController(withIdentifier: "EmailViewController")
+            let destVC = UIStoryboard(name: "Main", bundle:nil).instantiateViewController(withIdentifier: "MusicViewController") as! MusicViewController
             self.defaults.set(self.emailTextField.text!, forKey: "email")
             self.navigationController?.setViewControllers([destVC], animated: true)
             }
@@ -75,7 +102,14 @@ class LogInViewController: UIViewController {
     func navigateToNetworkViewController() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         if let networkViewController = storyboard.instantiateViewController(withIdentifier: "NetworkViewController") as? NetworkViewController {
-            navigationController?.pushViewController(networkViewController, animated: true)
+            navigationController?.setViewControllers([networkViewController], animated: true)
+        }
+    }
+    
+    func navigateToSignUpViewController() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        if let signUpViewController = storyboard.instantiateViewController(withIdentifier: "SignUpViewController") as? SignUpViewController {
+            navigationController?.pushViewController(signUpViewController, animated: true)
         }
     }
 }

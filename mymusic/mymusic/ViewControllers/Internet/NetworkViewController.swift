@@ -1,10 +1,3 @@
-//
-//  NetworkViewController.swift
-//  mymusic
-//
-//  Created by Alex Balla on 28.11.2023.
-//
-
 import UIKit
 import Network
 
@@ -42,16 +35,14 @@ class NetworkViewController: UIViewController {
     func navigateToLogInViewController() {
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             if let logInViewController = storyboard.instantiateViewController(withIdentifier: "LogInViewController") as? LogInViewController {
-                navigationController?.pushViewController(logInViewController, animated: true)
+                navigationController?.setViewControllers([logInViewController], animated: true)
             }
         }
 
         func showNoInternetAlert() {
             let alertController = UIAlertController(title: "No Internet Connection", message: "Please check your internet connection and try again.", preferredStyle: .alert)
 
-            let okAction = UIAlertAction(title: "OK", style: .default) { _ in
-                // Handle OK action if needed
-            }
+            let okAction = UIAlertAction(title: "OK", style: .default)
 
             alertController.addAction(okAction)
 
