@@ -1,8 +1,12 @@
 import UIKit
-import Firebase
+import FirebaseCore
 import FirebaseAuth
+import GoogleSignIn
+import Firebase
+import Network
 
 class SignUpViewController: UIViewController {
+    @IBOutlet weak var googleButton: UIButton!
     @IBOutlet weak var signButton: UIButton!
     @IBOutlet weak var errorLabel: UILabel!
     @IBOutlet weak var passwordConfirmTextField: UITextField!
@@ -13,6 +17,7 @@ class SignUpViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        checkInternetConnection()
         self.navigationController?.navigationBar.tintColor = .white
     }
     
@@ -47,8 +52,59 @@ class SignUpViewController: UIViewController {
             }
         }
     }
+    @IBAction func googleButtonDidClicked(_ sender: UIButton) {
+        guard let clientID = FirebaseApp.app()?.options.clientID else { return }
+        
+        let config = GIDConfiguration(clientID: clientID)
+        GIDSignIn.sharedInstance.configuration = config
+        
+        GIDSignIn.sharedInstance.signIn(withPresenting: self) { [unowned self] result, error in
+            guard error == nil else {
+                return
+            }
+
+            guard let user = result?.user, let idToken = user.idToken?.tokenString else {
+                return
+            }
+            let credential = GoogleAuthProvider.credential(withIDToken: idToken,
+                                                         accessToken: user.accessToken.tokenString)
+            Auth.auth().signIn(with: credential) { result, error in
+                let destVC = UIStoryboard(name: "Main", bundle:nil).instantiateViewController(withIdentifier: "MusicViewController") as! MusicViewController
+                self.defaults.set(self.emailTextField.text!, forKey: "email")
+                self.navigationController?.setViewControllers([destVC], animated: true)
+            }
+        }
+    }
     
-    @IBAction func logButtonClicked(_ sender: UIButton) {
-        navigationController?.popToRootViewController(animated: true)
+    func checkInternetConnection() {
+        let monitor = NWPathMonitor()
+
+        monitor.pathUpdateHandler = { path in
+            if path.status == .satisfied {
+                // Internet connection is available, proceed with your logic
+            } else {
+                // No internet connection, push NetworkViewController
+                DispatchQueue.main.async {
+                    self.navigateToNetworkViewController()
+                }
+            }
+        }
+
+        let queue = DispatchQueue(label: "Monitor")
+        monitor.start(queue: queue)
+    }
+
+    func navigateToNetworkViewController() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        if let networkViewController = storyboard.instantiateViewController(withIdentifier: "NetworkViewController") as? NetworkViewController {
+            navigationController?.setViewControllers([networkViewController], animated: true)
+        }
+    }
+    
+    func navigateToSignUpViewController() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        if let signUpViewController = storyboard.instantiateViewController(withIdentifier: "SignUpViewController") as? SignUpViewController {
+            navigationController?.pushViewController(signUpViewController, animated: true)
+        }
     }
 }

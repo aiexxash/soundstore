@@ -525,6 +525,7 @@
                                     <fontDescription key="titleFontDescription" type="system" weight="semibold" pointSize="16"/>
                                 </buttonConfiguration>
                                 <connections>
+                                    <action selector="googleButtonDidClicked:" destination="fNi-YV-sf7" eventType="touchUpInside" id="mZo-WI-r8a"/>
                                     <action selector="signButtonClicked:" destination="fNi-YV-sf7" eventType="touchUpInside" id="8wJ-Xd-Ohu"/>
                                 </connections>
                             </button>
@@ -565,6 +566,7 @@
                     <connections>
                         <outlet property="emailTextField" destination="wHx-iU-2rJ" id="vWp-IB-Pai"/>
                         <outlet property="errorLabel" destination="nks-i9-WaH" id="y9O-U7-VbR"/>
+                        <outlet property="googleButton" destination="uum-xq-M5n" id="WzD-9h-1yU"/>
                         <outlet property="passwordConfirmTextField" destination="PYM-gQ-CtY" id="Bal-G3-Zyd"/>
                         <outlet property="passwordTextField" destination="T0u-sO-m4N" id="K46-jC-nMJ"/>
                         <outlet property="signButton" destination="xQl-8b-yh9" id="YgB-SF-rh5"/>
