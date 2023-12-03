@@ -26,6 +26,7 @@ MYMUSIC is a new music app which will check internet connection, save all tracks
 - Enable users to create, edit, and share custom playlists to curate their favorite tracks for different moods or activities.
 #### Internet Check:
 - App automaticly checks if user is connected to internet source, so it redirects user to separate screen.
+
 Get all features at ialexballa@gmail.com
 
 
