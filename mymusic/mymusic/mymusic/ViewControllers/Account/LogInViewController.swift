@@ -18,7 +18,7 @@ class LogInViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        checkInternetConnection()
+        Helping.checkInternetConnection(from: self.navigationController)
         guard defaults.string(forKey: "email") == nil else {
             let destVC = UIStoryboard(name: "Main", bundle:nil).instantiateViewController(withIdentifier: "MusicViewController") as! MusicViewController
             self.navigationController?.setViewControllers([destVC], animated: true)
@@ -27,7 +27,7 @@ class LogInViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        checkInternetConnection()
+        Helping.checkInternetConnection(from: self.navigationController)
     }
     
     @IBAction func googleButtonDidTapped(_ sender: UIButton) {
@@ -76,34 +76,9 @@ class LogInViewController: UIViewController {
         }
     }
     @IBAction func signButtonClicked(_ sender: UIButton) {
-        checkInternetConnection()
+        Helping.checkInternetConnection(from: self.navigationController)
         let signUpVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SignUpViewController")
         self.navigationController?.pushViewController(signUpVC, animated: true)
-    }
-    
-    func checkInternetConnection() {
-        let monitor = NWPathMonitor()
-
-        monitor.pathUpdateHandler = { path in
-            if path.status == .satisfied {
-                // Internet connection is available, proceed with your logic
-            } else {
-                // No internet connection, push NetworkViewController
-                DispatchQueue.main.async {
-                    self.navigateToNetworkViewController()
-                }
-            }
-        }
-
-        let queue = DispatchQueue(label: "Monitor")
-        monitor.start(queue: queue)
-    }
-
-    func navigateToNetworkViewController() {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        if let networkViewController = storyboard.instantiateViewController(withIdentifier: "NetworkViewController") as? NetworkViewController {
-            navigationController?.setViewControllers([networkViewController], animated: true)
-        }
     }
     
     func navigateToSignUpViewController() {

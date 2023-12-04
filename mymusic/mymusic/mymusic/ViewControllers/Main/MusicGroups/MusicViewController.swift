@@ -1,4 +1,5 @@
 import UIKit
+import Network
 import Firebase
 import FirebaseStorage
 
@@ -10,7 +11,7 @@ class MusicViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        Helping.checkInternetConnection(from: self.navigationController)
         getSongs()
     }
     

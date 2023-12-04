@@ -17,11 +17,13 @@ class SignUpViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        checkInternetConnection()
+        Helping.checkInternetConnection(from: self.navigationController)
         self.navigationController?.navigationBar.tintColor = .white
     }
     
     @IBAction func signButtonClicked(_ sender: UIButton) {
+        Helping.checkInternetConnection(from: self.navigationController)
+        
         let error = Helping.checkTextFields(errorLabel: errorLabel, textFields: [emailTextField], confirmationField: passwordConfirmTextField, passwordTextField: passwordTextField)
         guard error == nil else {
             Helping.showError(text: error!, label: errorLabel, textFields: [emailTextField, passwordTextField, passwordConfirmTextField])
@@ -53,6 +55,8 @@ class SignUpViewController: UIViewController {
         }
     }
     @IBAction func googleButtonDidClicked(_ sender: UIButton) {
+        Helping.checkInternetConnection(from: self.navigationController)
+        
         guard let clientID = FirebaseApp.app()?.options.clientID else { return }
         
         let config = GIDConfiguration(clientID: clientID)
@@ -73,31 +77,6 @@ class SignUpViewController: UIViewController {
                 self.defaults.set(self.emailTextField.text!, forKey: "email")
                 self.navigationController?.setViewControllers([destVC], animated: true)
             }
-        }
-    }
-    
-    func checkInternetConnection() {
-        let monitor = NWPathMonitor()
-
-        monitor.pathUpdateHandler = { path in
-            if path.status == .satisfied {
-                // Internet connection is available, proceed with your logic
-            } else {
-                // No internet connection, push NetworkViewController
-                DispatchQueue.main.async {
-                    self.navigateToNetworkViewController()
-                }
-            }
-        }
-
-        let queue = DispatchQueue(label: "Monitor")
-        monitor.start(queue: queue)
-    }
-
-    func navigateToNetworkViewController() {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        if let networkViewController = storyboard.instantiateViewController(withIdentifier: "NetworkViewController") as? NetworkViewController {
-            navigationController?.setViewControllers([networkViewController], animated: true)
         }
     }
     
