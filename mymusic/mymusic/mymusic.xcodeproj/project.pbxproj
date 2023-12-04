@@ -20,6 +20,9 @@
 		70201B4F2B11347A0073BA78 /* FirebaseAnalyticsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 70201B4E2B11347A0073BA78 /* FirebaseAnalyticsSwift */; };
 		70201B512B11347A0073BA78 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */ = {isa = PBXBuildFile; productRef = 70201B502B11347A0073BA78 /* FirebaseAnalyticsWithoutAdIdSupport */; };
 		70201B532B11347A0073BA78 /* FirebaseAppCheck in Frameworks */ = {isa = PBXBuildFile; productRef = 70201B522B11347A0073BA78 /* FirebaseAppCheck */; };
+		7040663D2B1E7757005209B5 /* NavigationCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7040663C2B1E7757005209B5 /* NavigationCollectionViewCell.swift */; };
+		704066412B1E781A005209B5 /* SectionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 704066402B1E781A005209B5 /* SectionCollectionViewCell.swift */; };
+		704066432B1E784A005209B5 /* SongCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 704066422B1E784A005209B5 /* SongCollectionViewCell.swift */; };
 		7088A7282B190E78007BCB74 /* FirebaseAuthCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 7088A7272B190E78007BCB74 /* FirebaseAuthCombine-Community */; };
 		7088A72A2B190E78007BCB74 /* FirebaseMLModelDownloader in Frameworks */ = {isa = PBXBuildFile; productRef = 7088A7292B190E78007BCB74 /* FirebaseMLModelDownloader */; };
 		7088A72C2B1910CE007BCB74 /* FirebaseAppDistribution-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = 7088A72B2B1910CE007BCB74 /* FirebaseAppDistribution-Beta */; };
@@ -83,6 +86,9 @@
 		70201B302B1133040073BA78 /* mymusicUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = mymusicUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		70201B342B1133040073BA78 /* mymusicUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mymusicUITests.swift; sourceTree = "<group>"; };
 		70201B362B1133040073BA78 /* mymusicUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mymusicUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		7040663C2B1E7757005209B5 /* NavigationCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationCollectionViewCell.swift; sourceTree = "<group>"; };
+		704066402B1E781A005209B5 /* SectionCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionCollectionViewCell.swift; sourceTree = "<group>"; };
+		704066422B1E784A005209B5 /* SongCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongCollectionViewCell.swift; sourceTree = "<group>"; };
 		7088A73E2B19160B007BCB74 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		70CBC2822B167A4600D9E34C /* Helping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helping.swift; sourceTree = "<group>"; };
 		70CBC2842B167A5100D9E34C /* Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
@@ -234,6 +240,23 @@
 			path = Assets;
 			sourceTree = "<group>";
 		};
+		7040663E2B1E77E9005209B5 /* NavigationCollectionView */ = {
+			isa = PBXGroup;
+			children = (
+				7040663C2B1E7757005209B5 /* NavigationCollectionViewCell.swift */,
+			);
+			path = NavigationCollectionView;
+			sourceTree = "<group>";
+		};
+		7040663F2B1E77EF005209B5 /* SectionCollectionView */ = {
+			isa = PBXGroup;
+			children = (
+				704066402B1E781A005209B5 /* SectionCollectionViewCell.swift */,
+				704066422B1E784A005209B5 /* SongCollectionViewCell.swift */,
+			);
+			path = SectionCollectionView;
+			sourceTree = "<group>";
+		};
 		70CBC2862B167D4100D9E34C /* Internet */ = {
 			isa = PBXGroup;
 			children = (
@@ -263,6 +286,8 @@
 			isa = PBXGroup;
 			children = (
 				70CBC2A52B1681A500D9E34C /* MusicViewController.swift */,
+				7040663F2B1E77EF005209B5 /* SectionCollectionView */,
+				7040663E2B1E77E9005209B5 /* NavigationCollectionView */,
 			);
 			path = MusicGroups;
 			sourceTree = "<group>";
@@ -440,8 +465,11 @@
 				70CBC2832B167A4600D9E34C /* Helping.swift in Sources */,
 				70D5D8C72B124A2200BA3B26 /* SignUpViewController.swift in Sources */,
 				70CBC2A62B1681A500D9E34C /* MusicViewController.swift in Sources */,
+				704066412B1E781A005209B5 /* SectionCollectionViewCell.swift in Sources */,
 				70CBC2882B167DDB00D9E34C /* NetworkViewController.swift in Sources */,
 				70D5D8C52B124A1700BA3B26 /* LogInViewController.swift in Sources */,
+				704066432B1E784A005209B5 /* SongCollectionViewCell.swift in Sources */,
+				7040663D2B1E7757005209B5 /* NavigationCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

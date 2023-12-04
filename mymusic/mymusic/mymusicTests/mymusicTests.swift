@@ -1,10 +1,3 @@
-//
-//  mymusicTests.swift
-//  mymusicTests
-//
-//  Created by Alex Balla on 24.11.2023.
-//
-
 import XCTest
 @testable import mymusic
 

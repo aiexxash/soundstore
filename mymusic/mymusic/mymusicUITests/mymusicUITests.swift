@@ -1,10 +1,3 @@
-//
-//  mymusicUITests.swift
-//  mymusicUITests
-//
-//  Created by Alex Balla on 24.11.2023.
-//
-
 import XCTest
 
 final class mymusicUITests: XCTestCase {

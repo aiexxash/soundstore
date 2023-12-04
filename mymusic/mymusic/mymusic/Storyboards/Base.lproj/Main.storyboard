@@ -170,26 +170,31 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="0Wd-UF-RKM">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="navCell" id="0Wd-UF-RKM" customClass="NavigationCollectionViewCell" customModule="mymusic" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="126" height="40"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="6z5-mD-bdJ">
                                             <rect key="frame" x="0.0" y="0.0" width="126" height="40"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Feautured" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aM6-wl-46W">
-                                                    <rect key="frame" x="20.333333333333336" y="9.6666666666666643" width="85.666666666666657" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
-                                                    <color key="textColor" systemColor="systemOrangeColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lqk-4G-B8e">
+                                                    <rect key="frame" x="13.333333333333336" y="2.3333333333333321" width="99.333333333333314" height="35.666666666666671"/>
+                                                    <color key="tintColor" systemColor="systemOrangeColor"/>
+                                                    <state key="normal" title="Button"/>
+                                                    <buttonConfiguration key="configuration" style="plain" title="Featured">
+                                                        <fontDescription key="titleFontDescription" type="system" weight="semibold" pointSize="18"/>
+                                                    </buttonConfiguration>
+                                                </button>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="aM6-wl-46W" firstAttribute="centerY" secondItem="6z5-mD-bdJ" secondAttribute="centerY" id="R1b-k4-7OU"/>
-                                                <constraint firstItem="aM6-wl-46W" firstAttribute="centerX" secondItem="6z5-mD-bdJ" secondAttribute="centerX" id="cRm-aO-U5X"/>
+                                                <constraint firstItem="Lqk-4G-B8e" firstAttribute="centerX" secondItem="6z5-mD-bdJ" secondAttribute="centerX" id="0IO-rM-cXx"/>
+                                                <constraint firstItem="Lqk-4G-B8e" firstAttribute="centerY" secondItem="6z5-mD-bdJ" secondAttribute="centerY" id="Oy6-se-L1h"/>
                                             </constraints>
                                         </collectionViewCellContentView>
                                         <size key="customSize" width="126" height="40"/>
+                                        <connections>
+                                            <outlet property="navTitle" destination="Lqk-4G-B8e" id="UdZ-8K-erA"/>
+                                        </connections>
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
@@ -203,7 +208,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="uEk-lX-4og">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="sectionCell" id="uEk-lX-4og" customClass="SectionCollectionViewCell" customModule="mymusic" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="393" height="241"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="U22-mk-8dI">
@@ -233,7 +238,7 @@
                                                         <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                     </collectionViewFlowLayout>
                                                     <cells>
-                                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="Pd5-Cw-5P4">
+                                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="Pd5-Cw-5P4" customClass="SongCollectionViewCell" customModule="mymusic" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="0.0" width="173" height="217"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="I55-8l-Nyw">
@@ -276,6 +281,11 @@
                                                                 </constraints>
                                                             </collectionViewCellContentView>
                                                             <size key="customSize" width="173" height="217"/>
+                                                            <connections>
+                                                                <outlet property="author" destination="kyx-u7-uuI" id="WCG-XO-SP5"/>
+                                                                <outlet property="imageView" destination="pLh-BF-pgG" id="0RF-a9-srj"/>
+                                                                <outlet property="title" destination="EBu-rN-rZF" id="Bzg-BX-HHe"/>
+                                                            </connections>
                                                         </collectionViewCell>
                                                     </cells>
                                                 </collectionView>
@@ -292,6 +302,11 @@
                                             </constraints>
                                         </collectionViewCellContentView>
                                         <size key="customSize" width="393" height="241"/>
+                                        <connections>
+                                            <outlet property="sectionTitle" destination="eIa-pq-O4w" id="J9g-Kt-MjI"/>
+                                            <outlet property="seeAllButton" destination="DoL-MX-RPh" id="YEb-ax-TfO"/>
+                                            <outlet property="songCollectionView" destination="AkG-8C-lxD" id="a2P-uu-da0"/>
+                                        </connections>
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
@@ -309,6 +324,10 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="mymusic" largeTitleDisplayMode="always" id="NxQ-oI-2ZP"/>
+                    <connections>
+                        <outlet property="navigationCollectionView" destination="aIg-cU-q65" id="nVm-De-BlR"/>
+                        <outlet property="sectionCollectionView" destination="H0i-CO-CEQ" id="u1l-ZU-Rcw"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Wkr-xl-N19" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -754,19 +773,19 @@
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemGray2Color">
-            <color red="0.68235294120000001" green="0.68235294120000001" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.68235294117647061" green="0.68235294117647061" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGray6Color">
-            <color red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGrayColor">
-            <color red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemOrangeColor">
-            <color red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemRedColor">
-            <color red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

@@ -3,6 +3,8 @@ import Firebase
 import FirebaseStorage
 
 class MusicViewController: UIViewController {
+    @IBOutlet weak var sectionCollectionView: UICollectionView!
+    @IBOutlet weak var navigationCollectionView: UICollectionView!
     var soundURLs: [URL] = []
     let defaults = UserDefaults.standard
 
