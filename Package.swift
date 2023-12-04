@@ -1,5 +1,3 @@
-// swift-tools-version:5.9
-// Change the above line to:
 // swift-tools-version:5.7.1
 
 import PackageDescription
