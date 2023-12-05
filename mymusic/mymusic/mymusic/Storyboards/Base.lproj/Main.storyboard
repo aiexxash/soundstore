@@ -163,7 +163,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="NwL-22-3WC"/>
                                 </constraints>
-                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="9Qk-lI-dIv">
+                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="9Qk-lI-dIv">
                                     <size key="itemSize" width="126" height="40"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -171,7 +171,7 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="navCell" id="0Wd-UF-RKM" customClass="NavigationCollectionViewCell" customModule="mymusic" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="126" height="40"/>
+                                        <rect key="frame" x="0.0" y="5" width="126" height="40"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="6z5-mD-bdJ">
                                             <rect key="frame" x="0.0" y="0.0" width="126" height="40"/>
@@ -231,15 +231,15 @@
                                                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="AkG-8C-lxD">
                                                     <rect key="frame" x="0.0" y="49" width="393" height="192"/>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                                    <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="sd5-84-vzS">
+                                                    <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="sd5-84-vzS">
                                                         <size key="itemSize" width="173" height="217"/>
                                                         <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                                         <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                                         <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                     </collectionViewFlowLayout>
                                                     <cells>
-                                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="Pd5-Cw-5P4" customClass="SongCollectionViewCell" customModule="mymusic" customModuleProvider="target">
-                                                            <rect key="frame" x="0.0" y="0.0" width="173" height="217"/>
+                                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="songCell" reuseIdentifier="songCell" id="Pd5-Cw-5P4" customClass="SongCollectionViewCell" customModule="mymusic" customModuleProvider="target">
+                                                            <rect key="frame" x="0.0" y="-12.666666666666666" width="173" height="217"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="I55-8l-Nyw">
                                                                 <rect key="frame" x="0.0" y="0.0" width="173" height="217"/>
@@ -282,9 +282,9 @@
                                                             </collectionViewCellContentView>
                                                             <size key="customSize" width="173" height="217"/>
                                                             <connections>
-                                                                <outlet property="author" destination="kyx-u7-uuI" id="WCG-XO-SP5"/>
+                                                                <outlet property="authorLabel" destination="kyx-u7-uuI" id="Va4-HN-jYc"/>
                                                                 <outlet property="imageView" destination="pLh-BF-pgG" id="0RF-a9-srj"/>
-                                                                <outlet property="title" destination="EBu-rN-rZF" id="Bzg-BX-HHe"/>
+                                                                <outlet property="titleLabel" destination="EBu-rN-rZF" id="kl8-5w-E9Y"/>
                                                             </connections>
                                                         </collectionViewCell>
                                                     </cells>

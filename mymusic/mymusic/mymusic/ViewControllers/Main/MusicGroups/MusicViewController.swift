@@ -3,20 +3,81 @@ import Network
 import Firebase
 import FirebaseStorage
 
-class MusicViewController: UIViewController {
+class MusicViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        if (collectionView == navigationCollectionView) {
+            return navSections.count
+        } else if (collectionView == sectionCollectionView) {
+            return mainSections.count
+        }
+        return 0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        if (collectionView == navigationCollectionView) {
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "navCell", for: indexPath) as? NavigationCollectionViewCell else {
+                        fatalError("unable to dequeue a reusable cell")
+            }
+            cell.navTitle.setTitle(navSections[indexPath.row], for: .normal)
+            cell.navTitle.setTitleColor(.systemGray3, for: .normal)
+          //  cell.navTitle.titleLabel?.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
+
+            
+            return cell
+        } else if (collectionView == sectionCollectionView) {
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "sectionCell", for: indexPath) as? SectionCollectionViewCell else {
+                        fatalError("unable to dequeue a reusable cell")
+            }
+            cell.sectionTitle.text = mainSections[indexPath.row]
+            
+            cell.songCollectionView.delegate = cell
+            cell.songCollectionView.dataSource = cell
+            
+            cell.songCollectionView.reloadData()
+            
+            return cell
+        }
+        
+        return UICollectionViewCell()
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        if (collectionView == navigationCollectionView) {
+            return CGSize(width: 100, height: 40)
+        } else if (collectionView == sectionCollectionView) {
+            return CGSize(width: 390, height: 240)
+        } else {
+            fatalError()
+        }
+    }
+
     @IBOutlet weak var sectionCollectionView: UICollectionView!
     @IBOutlet weak var navigationCollectionView: UICollectionView!
     var soundURLs: [URL] = []
     let defaults = UserDefaults.standard
+    static var songs: [String] = []
+    static var authors: [String] = []
+    let navSections: [String] = ["Featured", "Songs", "Authors", "Albums"]
+    let mainSections: [String] = ["Recently Played", "Artists", "Hip-Hop", "Phonk", "Rap"]
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.overrideUserInterfaceStyle = .dark
+        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+        navigationItem.title = "mymusic"
+        sectionCollectionView.delegate = self
+        sectionCollectionView.dataSource = self
+        navigationCollectionView.delegate = self
+        navigationCollectionView.dataSource = self
         Helping.checkInternetConnection(from: self.navigationController)
         getSongs()
     }
     
     func getSongs(){
-        guard let currentUser = Auth.auth().currentUser else {
+        guard Auth.auth().currentUser != nil else {
             return
         }
         
@@ -65,6 +126,12 @@ class MusicViewController: UIViewController {
                                             
                                             creator = creator.replacingOccurrences(of: "&", with: ", ")
                                             
+                                            MusicViewController.songs.append(song)
+                                            MusicViewController.authors.append(creator)
+                                            DispatchQueue.main.async {
+                                                self.sectionCollectionView.reloadData()
+                                            }
+                                            
                                             // Now you have 'creator' and 'song' variables
                                             print("Creator: \(creator)")
                                             print("Song: \(song)")
@@ -86,5 +153,30 @@ class MusicViewController: UIViewController {
         // Perform actions with each URL, such as displaying or playing the sound
             print("Sound URL: \(url)")
         }
+    }
+}
+
+extension SectionCollectionViewCell: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        print("================== \(MusicViewController.songs.count)")
+        return MusicViewController.songs.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "songCell", for: indexPath) as? SongCollectionViewCell else {
+                fatalError("unable to dequeue a reusable cell")
+            }
+    
+            let songTitle = MusicViewController.songs[indexPath.row]
+            let author = MusicViewController.authors[indexPath.row]
+    
+            cell.configure(with: songTitle, author: author)
+    
+            return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: 170, height: 215)
     }
 }
