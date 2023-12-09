@@ -1,4 +1,3 @@
-![MIT License](https://img.shields.io/badge/Built_with-Love-red)
 <div align="center"> <img src="https://github.com/aiexxash/soundstore/blob/music-feature/soundstore-img/twitter_header_photo_2.png"> </div>
 
 # Soundstore
