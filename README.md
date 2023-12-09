@@ -2,7 +2,7 @@
 ![MIT License](https://img.shields.io/badge/Built_with-Love-red)
 # Soundstore
 
-MYMUSIC is a new music app which will check internet connection, save all tracks on firebase storage, firestore and more!
+Soundstore is a new music app which will check internet connection, save all tracks on firebase storage, firestore and more!
 
 
 * [Features](#Features)
